@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+       
+    <string name="app_name">My First App</string>
+       
+    <string name="edit_message">Enter a message</string>
+       
+    <string name="button_send">Send</string>
+
+    <string name="button_back">Back</string>
+
+    <string name="button_options">Settings</string>
+
+    <string name="phone_number">Enter phone number</string>
+
+    <string name="api_key">Your API key</string>
+
+    <string name="launch">Done</string>
+
+    <string name="save">Save</string>
+
+    <string name="sent"></string>
+</resources>
