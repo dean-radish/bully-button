@@ -20,4 +20,6 @@
     <string name="save">Save</string>
 
     <string name="sent"></string>
+
+    <string name="childName">Enter your child\'s name</string>
 </resources>

@@ -43,15 +43,18 @@ public class MainActivity extends AppCompatActivity {
      */
     public void sendMessage(View view) {
         // Do something in response to button
+        SharedPreferences preferences = getSharedPreferences("bully_prefs", 0);
+        String childName = preferences.getString ("childName", "");
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String message = editText.getText().toString();
         if (message.isEmpty()) {
             message =
-                    "Your child has pressed the bully button, they would like to talk to you about it later.";
+                   childName + " has pressed the bully button, they would like to talk to you about it later.";
         }
-        SharedPreferences preferences = getSharedPreferences("bully_prefs", 0);
+
         String phoneNum = preferences.getString("phone_number", "");
         String apiKey = preferences.getString("api_key", "");
+
         //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         //startActivity(intent);
         HttpURLConnection urlConnection = null;
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
             ClockWorkSmsService clockWorkSmsService = new ClockWorkSmsService(apiKey);
             SMS sms = new SMS(phoneNum, message);
+            sms.setFrom(childName);
             ClockworkSmsResult result = clockWorkSmsService.send(sms);
 
             if (result.isSuccess()) {
@@ -93,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
             EditText apiKeyEditText = (EditText) findViewById(R.id.apiKey);
             apiKeyEditText.setText(apiKey);
 
+            String childName = preferences.getString("childName", "");
+            EditText childNameEditText = (EditText) findViewById(R.id.childName);
+            childNameEditText.setText(childName);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -118,6 +126,11 @@ public class MainActivity extends AppCompatActivity {
             EditText apiKeyEditText = (EditText) findViewById(R.id.apiKey);
             String apiKey = apiKeyEditText.getText().toString();
             editor.putString("api_key", apiKey); // value to store
+
+            //Child name
+            EditText  childNameEditText = (EditText) findViewById(R.id.childName);
+            String childName = childNameEditText.getText() .toString();
+            editor.putString("childName", childName); // value to store
 
             editor.commit();
             setContentView(R.layout.activity_main);

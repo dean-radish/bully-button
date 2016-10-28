@@ -15,8 +15,15 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:hint="@string/api_key"
-        android:inputType="number"
+        android:inputType="text"
         android:imeActionLabel="@string/launch" />
+
+    <EditText android:id="@+id/childName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="@string/childName"
+        android:inputType="text"
+        android:imeActionLabel="Done"/>
 
     <Button
         android:layout_width="wrap_content"
